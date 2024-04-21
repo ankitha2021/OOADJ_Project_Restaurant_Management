@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Book Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('res.jpg');  
+      background-size: cover; 
+      background-position: center; 
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .checkbox-container {
+      margin-bottom: 10px;
+    }
+    .checkbox-item {
+      margin-right: 10px;
+    }
+    .success-message {
+      color: green;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>Table Booking</h2>
+  <p th:if="${tableInfo == null or tableInfo.isEmpty()}">No unassigned tables found.</p>
+
+
+  <form th:action="@{/booktable}" method="post">
+    <label>Select the table/tables you want:</label>
+    <div class="checkbox-container" th:each="tableInfoItem : ${tableInfo}">
+        <input class="checkbox-item" type="checkbox" th:id="'tableChoice_' + ${tableInfoItem.tableNo}" th:name="tableChoices" th:value="${tableInfoItem.tableNo}">
+        <label th:for="'tableChoice_' + ${tableInfoItem.tableNo}" th:text="${'Table No: ' + tableInfoItem.tableNo + ', Number of Seats: ' + tableInfoItem.noOfSeats}"></label>
+    </div>
+    
+    <button class="button" type="submit">Book</button>
+
+    <p class="success-message" th:if="${param.successBooked}">
+      Successfully booked table(s) <span th:text="${bookedTables}"></span>.
+    </p>
+
+</form>
+
+<form th:action="@{/menu}" method="get" >
+  <button class="button" type="submit" th:if="${param.successBooked}">View Menu</button>
+</form>
+
+</body>
+</html>

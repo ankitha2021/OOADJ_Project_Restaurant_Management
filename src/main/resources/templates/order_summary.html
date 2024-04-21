@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column; 
+            background-image: url('res.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 60%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Summary</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item, i : ${orderedItems}">
+                <td th:text="${item.itemId}"></td>
+                <td th:text="${item.itemName}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${orderQuantities[i.index]}"></td>
+                <td th:text="${itemTotalPrices[i.index]}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Total Order Price: <span th:text="${totalPrice}"></span></p>
+    <form action="/menu" method="get">
+        <button type="submit">Order More</button>
+        <br/>
+    </form>
+    <form action="/bill" method="get">
+        <br/>
+        <button type="submit">Bill</button>
+    </form>
+</body>
+</html>

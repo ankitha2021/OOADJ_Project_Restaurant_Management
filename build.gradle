@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.3' // Use the latest Spring Boot plugin version
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' // Adjusted version
+    id 'java'
+}
+
+apply plugin: 'java'
+
+compileJava {
+    options.compilerArgs << '-parameters'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17' // Use the Java version you prefer, here it's Java 17
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'javax.persistence:javax.persistence-api:2.2' // Or the version compatible with your JPA provider
+    implementation 'mysql:mysql-connector-java:8.0.26' // MySQL dependency
+    implementation 'javax.servlet:javax.servlet-api:4.0.1' 
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

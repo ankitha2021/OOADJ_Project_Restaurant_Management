@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 10px; /* Adjust spacing between buttons */
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .text {
+            font-weight: bold;
+            margin-bottom: 10px; /* Add space between text and buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Our Website!!</h1>
+        <p>Your all-in-one platform for effortless dining experiences. <br/>
+            Reserve your table, savor our delightful menu, and settle your bill <br/>
+            seamlessly—all in just a few clicks.</p>
+
+        <div class="button-container">
+            <div class="text">New User? Register now to start enjoying our services</div>
+            <a th:href="@{/registration}" class="button">Register</a>
+        </div>
+
+        <div class="button-container">
+            <div class="text">Existing User? Login to access your account</div>
+            <a th:href="@{/login}" class="button">Login</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
