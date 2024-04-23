@@ -88,6 +88,7 @@ public class MenuController {
     public String payment(Model model, HttpSession session) 
     {
         calculateOrderSummary();
+        session.setAttribute("totalPrice", totalPrice);
         String bookedTables = (String)session.getAttribute("bookedTables");
         String[] tableTokens = bookedTables.split(", ");
         for (String table : tableTokens)
@@ -102,8 +103,6 @@ public class MenuController {
         model.addAttribute("orderQuantities", orderQuantities);
         model.addAttribute("itemTotalPrices", itemTotalPrices);
         model.addAttribute("totalPrice", totalPrice);
-
-
         return "bill";
     }
 }
